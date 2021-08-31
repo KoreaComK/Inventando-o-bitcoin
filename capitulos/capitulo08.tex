@@ -1,0 +1,48 @@
+\part{O Bitcoin Client}
+\label{ch:capitulo8}
+\chapter*{O Bitcoin Client}
+
+Agora temos um sistema distribuído funcional para acompanhar e transferir valor. Vamos revisar o que criamos até agora:
+
+\begin{samepage}
+\begin{enumerate}
+\item Um livro-razão distribuído, uma cópia que é mantida por todos os participantes;
+\item Um sistema de loteria baseado em Prova de Trabalho e ajustes de dificuldade para manter a rede segura e o cronograma de emissão consistente;
+\item Um sistema de consenso que garante que cada participante possa validar todo o histórico da blockchain para si, usando um software de código aberto chamado Bitcoin Client;
+\item Um sistema de identidade usando assinaturas digitais que permite a criação arbitrária de caixas de correio semelhantes a contas que podem receber bitcoins sem uma autoridade central.
+\end{enumerate}
+\end{samepage}
+
+Agora é hora de enfrentar uma das coisas mais interessantes e contra-intuitivas do Bitcoin: De onde vêm as regras e como são aplicadas.
+
+\paragraph{O software do Bitcoin}
+\paragraph{}
+
+Ao longo dos capítulos anteriores, presumimos que todos na rede estavam validando as mesmas regras: ou seja, estão rejeitando gastos duplos, garantindo que cada bloco contenha a quantidade adequada de Prova de Trabalho e, que cada bloco aponte para o bloco anterior da blockchain atual, entre um monte de outras coisas com as quais as pessoas concordaram ao longo do tempo.
+
+Também dissemos que o Bitcoin é um software de código aberto. O código aberto significa que qualquer pessoa pode ler seu código e também que qualquer pessoa pode atualizar sua própria cópia com o código que quiser. Como as mudanças chegam ao Bitcoin?
+
+O Bitcoin é um \textit{protocolo}. Em software de computador, este termo se refere a um conjunto de regras que o software segue. No entanto, contanto que você siga o conjunto de regras que todos estão seguindo, você é livre para modificar seu software como desejar. Quando dizemos que as pessoas “executam nodes de Bitcoin”, o que realmente queremos dizer é que elas executam um software que se comunica usando o protocolo Bitcoin. Este software pode conversar com outros nodes Bitcoin, transmitir transações e blocos para eles, descobrir outros nodes para fazer se conectar e assim por diante.
+
+Os detalhes reais de como o software é implementado dependem de qualquer pessoa que o execute. Na verdade, existem muitas implementações do protocolo Bitcoin. O mais popular deles é chamado Bitcoin Core e é a extensão do trabalho lançado pela primeira vez por Satoshi Nakamoto.
+
+Existem outros clientes também, alguns até mesmo escritos em outras linguagens de computador e mantidos por pessoas diferentes. Como o consenso em Bitcoin é crítico (o que significa que todos os nodes devem concordar sobre quais blocos são ou não válidos), a grande maioria dos nodes executa o mesmo software (Bitcoin Core) para evitar quaisquer bugs acidentais que podem fazer com que alguns nodes discordem sobre o que é válido ou não.
+\newpage
+\paragraph{Então, quem faz as regras?}
+\paragraph{}
+
+As regras que compõem o Bitcoin são codificadas no cliente Bitcoin Core. Mas quem decide essas regras? Por que dizemos que o Bitcoin é escasso se alguém pode entrar e fazer uma modificação no software que muda o limite de 21 milhões de bitcoins para 42 milhões?
+
+Sendo um sistema distribuído, todos os nodes deste sistema devem concordar com as regras. Se você for um minerador e decidir mudar o software para conceder a você o dobro de Bitcoins que lhe é permitido pela configuração atual de recompensa por bloco, então, quando você minerar seu bloco, todos os outros nodes da rede rejeitarão seu bloco. Fazer uma mudança nas regras é extremamente difícil porque existem milhares de nodes distribuídos em todo o mundo, cada um aplicando as regras do Bitcoin.
+
+O modelo de governança do Bitcoin é contra-intuitivo, especialmente para aquelas pessoas que vivem em uma democracia ocidental. Estamos acostumados à governança pelo voto - a maioria das pessoas pode decidir fazer algo, aprovar uma lei e impor sua vontade à minoria. Mas o sistema de governo do Bitcoin está muito mais próximo de uma anarquia do que da democracia. Vamos dar uma olhada nos entes que compõe este sistema:
+
+\textbf{Node}: Cada participante da rede Bitcoin executa um node. Eles escolhem qual software executar. Embora a maioria das pessoas execute o Bitcoin Core, se o software se tornar malicioso e tentar introduzir algo como inflação, ninguém o executará. Exemplos de nodes incluem aqueles executados por qualquer pessoa que aceite Bitcoin - comerciantes, exchanges, empresas que oferecem carteiras e pessoas comuns que usam o Bitcoin para qualquer propósito que desejem.
+
+\textbf{Mineradores}: Alguns nodes também são meus. Isso significa que eles gastam eletricidade para ganhar direitos de escrever no livro-razão do Bitcoin. Isso fornece a segurança da rede, tornando muito caro para alguém adulterar o livro-razão. Se os mineradores são os únicos que escrevem nele, pode ser tentador considerá-los os criadores das regras, mas não são. Eles estão simplesmente seguindo as regras definidas pelos nodes que aceitam os bitcoins. Se os mineradores começarem a produzir blocos que contenham recompensa extra, eles não serão aceitos por outros nodes, tornando essas moedas inúteis. Assim, cada usuário executando um node está participando de uma governança anárquica - eles estão escolhendo quais regras as moedas que eles consideram Bitcoin devem seguir, e qualquer violação é rejeitada imediatamente.
+
+\textbf{Usuários/investidores}: Os usuários são as pessoas que compram e vendem a moeda bitcoin, bem como os nodes de operação. Muitos usuários atualmente não executam seus próprios nodes, mas dependem de um node hospedado pelo provedor da carteira, onde atua como uma espécie de proxy para os desejos e vontades do usuário. Os usuários decidem o valor da moeda no livre mercado. Mesmo que os mineradores e a maioria dos nodes econômicos do sistema conspirassem e introduzissem algum tipo de mudança radical, como a inflação, os usuários provavelmente se livrariam da moeda, baixando o preço e colocando as empresas que aceitaram essa regra à falência. Uma minoria intolerante de usuários sempre poderia manter sua própria versão do Bitcoin viva, mesmo se o Bitcoin se transformasse em algo de que não gostassem.
+
+\textbf{Desenvolvedores}: O software do Bitcoin Core é o maior projeto do Bitcoin Client que existe. Ele atraiu um rico ecossistema de centenas dos melhores desenvolvedores e empresas de criptografia. O projeto central é muito conservador, pois o software alimenta uma rede que agora protege centenas de bilhões de dólares. Cada mudança passa por um processo de proposta e é cuidadosamente revisada por pares. O processo de propostas e revisão de código é feito totalmente de maneira aberta e qualquer pessoa pode participar, comentar ou enviar o código. Se os desenvolvedores se tornarem mal intencionados e introduzirem algo que ninguém deseja executar, os usuários simplesmente executarão softwares diferentes (talvez versões mais antigas ou começarão a desenvolver algo novo). Por causa disso, os desenvolvedores principais devem desenvolver mudanças que os usuários geralmente desejam, ou arriscam perder seu status de implementação de referência se ninguém quiser executá-la.
+
+O ecossistema do Bitcoin é uma dança delicada entre milhares de participantes, todos agindo de forma egoísta e muitas vezes com necessidades concorrentes, mas produzindo um sistema altamente resiliente para o bem maior como resultado. É um sistema anarquista de mercado verdadeiramente livre, sem ninguém em particular no comando.

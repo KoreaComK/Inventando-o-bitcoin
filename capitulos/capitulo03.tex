@@ -1,0 +1,149 @@
+\part{Sem Confiança e Permissão}
+\label{ch:capitulo3}
+\chapter*{Sem Confiança e Permissão}
+
+Contanto que nosso livro-razão distribuído exija permissão para participar e possamos confiar que todas as partes sejam honestas, o sistema funcionará. Mas este tipo de design não pode ser escalado para ser usado por milhões de pessoas em todo o mundo.
+
+Os sistemas distribuídos feitos de participantes arbitrários são inerentemente não confiáveis. Algumas pessoas podem sair ocasionalmente. Isso significa que eles podem não saber das nossas transações quando as transmitimos. Outros podem estar ativamente tentando nos fraudar, dizendo que certas transações aconteceram ou não. Novas pessoas podem ingressar na rede e obter cópias conflitantes do livro-razão. Vamos dar uma olhada em como alguém pode tentar trapacear.
+
+\paragraph{O ataque de gastos duplos}
+\paragraph{}
+
+Se eu for a Ana, posso \textit{conspirar} com algumas das outras pessoas e dizer a elas: "Quando eu gastar o meu dinheiro, não escreva em seus livros. Finja que essa transação nunca aconteceu”. Veja como Ana pode realizar um ataque de gasto duplo.
+
+Começando com um saldo de R\$2,00, Ana faz o seguinte:
+
+\begin{enumerate}
+\item Ela manda seus R\$2,00 para Bruno, para comprar uma barra de chocolate. Agora ela deve ter R\$0,00 sobrando;
+\item Danilo, Evandro e Fernanda estão conspirando com Ana e não registram a sua transação para Bruno em seus livros. Em sua cópia, Ana nunca gastou seu dinheiro;
+\item Carol é uma honesta guardiã do livro-razão. Ela anota a transação de Ana para Bruno. Em seu livro-razão, Ana tem R\$0,00;
+\item Henrique estava de férias por uma semana e não ouviu falar de nenhuma dessas transações. Ele se junta à rede e pede uma cópia do livro-razão;
+\item Henrique obtém 4 cópias falsas (Danilo, Evandro, Fernanda, Ana) e uma cópia honesta (Carol). Como ele determina qual é a real? Sem um sistema melhor, ele busca a maioria dos votos e é enganado ao aceitar o livro-razão falso como sendo o correto;
+\item Ana compra uma barra de chocolate de Henrique usando os R\$2,00 que ela realmente não tem. Henrique aceita porque, pelo que sabe, Ana ainda tem R\$2,00 em sua conta (de acordo com o livro-razão que ele obteve de todos os outros;
+\item Ana agora tem 2 barras de chocolate e R\$4,00 de dinheiro falso foram criados no sistema. Ela paga seus amigos em barras de chocolate, e eles repetem o ataque 100 vezes a cada nova pessoa que entra na rede;
+\item Agora, Ana tem todas as barras de chocolate e todos os outros estão segurando grandes quantias de dinheiro falso;
+\item Quando eles tentam gastar o dinheiro que Ana supostamente enviou para eles, Danilo, Evandro e Fernanda que controlam a maioria da rede, rejeitam esses gastos porque sabem que o dinheiro é falso desde o começo.
+\end{enumerate}
+
+Nós temos um problema. Isso é chamado de \textit{falha de consenso}. As pessoas na rede não chegaram a um consenso sobre qual é o estado real. Não tendo um sistema melhor, eles seguiram a regra da maioria, o que levou a pessoas desonestas controlando a rede e gastando dinheiro que não tinham.
+Se quisermos fazer um sistema \textit{sem permissão} onde qualquer um pode participar sem pedir, então ele também deve ser resiliente a usuários desonestos.
+
+\paragraph{Resolvendo o problema de consenso distribuído}
+\paragraph{}
+Agora vamos resolver um dos problemas mais difíceis da ciência da computação: consenso distribuído entre as partes, onde alguns são desonestos ou não confiáveis. Este problema é conhecido como Problema dos Generais Bizantinos e é a chave que Satoshi Nakamoto usou para criar a invenção do Bitcoin. Vamos começar de forma simples.
+
+Precisamos fazer com que várias pessoas concordem com os dados do livro-razão sem saber se os  responsáveis pelo livro-razão têm anotado todas as transações de maneira correta e honesta.
+
+Uma solução ingênua é simplesmente nomear os representantes honestos do livro-razão. Em vez de todos começarem a escrever nele, escolhemos um punhado de amigos como Carol, Giovana, Fernanda e Zélia para fazer isso, porque eles não mentem e todo mundo sabe que nunca vão para as festas nos fins de semana.
+
+Então, toda vez que temos que fazer uma transação, em vez de contar a todos os nossos amigos, apenas ligamos para Carol e a sua gangue. Eles ficam felizes em manter o livro-razão para nós por uma pequena taxa. Depois de escreverem no livro-razão, eles ligam para todos os outros e informam sobre as novas linhas incluídas, que todos ainda mantêm como backup.
+
+Este sistema funciona muito bem, exceto que um dia, agentes do governo aparecem e querem saber quem está administrando este sistema financeiro paralelo. Eles prendem a Carol e seus amigos e os levam embora, pondo fim ao livro-razão distribuído. Todos nós temos backups não confiáveis, não podemos confiar uns nos outros e não podemos descobrir de quem é o backup que deve ser usado para iniciar um novo sistema.
+
+Em vez de um fechamento total, o governo também pode ameaçar discretamente os responsáveis pelo registro com pena de prisão se eles aceitarem as transações da Ana (que é suspeita de vender drogas). O sistema agora está efetivamente sob controle central e não podemos mais dizer que ele não tem permissão.
+
+E se tentarmos a democracia? Vamos encontrar um grupo de 50 pessoas honestas e realizaremos eleições todos os dias para manter a rotação de quem escreve no livro-razão. Todos na rede têm direito a voto.
+
+Este sistema funciona muito bem até que as pessoas apareçam e usem violência ou coerção financeira para alcançar os mesmos objetivos de antes:
+
+\begin{samepage}
+\begin{enumerate}
+\item Forçar o eleitorado a votar nos contadores de sua escolha;
+\item Forçar os detentores do livro-razão eleitos a escreverem lançamentos falsos nele.
+\end{enumerate}
+\end{samepage}
+
+Nós temos um problema. Sempre que designamos pessoas específicas para manter o livro-razão, devemos confiar que elas são honestas, e não temos como defendê-las de serem coagidas por alguém a cometer atos desonestos e corromper nosso livro-razão.
+
+\paragraph{Identidade equivocada e ataques Sybil}
+\paragraph{}
+Até agora, examinamos dois métodos fracassados de garantir a honestidade: um usava contadores específicos e conhecidos e o outro usava contadores eleitos e rotativos. A falha de ambos os sistemas foi que a base de nossa confiança estava ligada à identidade do mundo real: ainda tínhamos que identificar especificamente os indivíduos que seriam responsáveis por nosso livro-razão.
+
+Sempre que assumimos confiança com base na identidade, nos abrimos para algo chamado \textit{Ataque Sybil}. Este é basicamente um nome chique para personificação; tem o nome de uma mulher com transtorno de personalidade múltipla.
+
+Você já recebeu uma mensagem estranha de um de seus amigos apenas para descobrir que o telefone dele havia sido pego pelo irmão? Quando se trata de bilhões ou mesmo trilhões de dólares em jogo, as pessoas justificam todo tipo de violência para roubar aquele telefone e enviar aquela mensagem. É fundamental evitarmos que as pessoas que mantêm nosso livro-razão sejam coagidas de alguma forma. Como podemos fazer isso?
+
+\paragraph{Vamos construir uma loteria}
+\paragraph{}
+Se não queremos a possibilidade de pessoas serem comprometidas por ameaças de violência ou suborno, precisamos de um sistema com tantos participantes que seria impraticável para alguém coagi-los. Deve ser o caso de que qualquer pessoa possa participar de nosso sistema, e que não tenhamos que introduzir nenhum tipo de votação, que está sujeita à coerção pela violência e compra de votos.
+
+E se fizéssemos uma loteria onde escolheríamos alguém aleatoriamente sempre que quiséssemos escrever no livro-razão? Aqui está nosso primeiro rascunho deste design:
+
+\begin{samepage}
+\begin{enumerate}
+\item Qualquer pessoa no mundo pode participar. Dezenas de milhares de pessoas podem aderir à nossa rede de loteria de contadores;
+\item Quando queremos enviar dinheiro, anunciamos para toda a rede as transações que pretendemos realizar, tal como o fizemos anteriormente;
+\item A cada dez minutos, selecionaremos um vencedor (Como? Ainda não tenho certeza);
+\item Quando selecionamos um vencedor, essa pessoa escreve todas as transações sobre as quais acabou de ouvir no livro razão;
+\item Se a pessoa gravar transações válidas (conforme considerado por todos os outros participantes da rede) no livro-razão, ela receberá uma taxa;
+\item Todos mantêm uma cópia do livro-razão, adicionando as informações que o último ganhador da loteria produziu;
+\item Usamos o intervalo de dez minutos para garantir que a maioria das pessoas tenha tempo para atualizar seus livros contábeis entre os sorteios da loteria.
+\end{enumerate}
+\end{samepage}
+
+Este sistema é uma melhoria. É impraticável comprometer os participantes deste sistema porque é impossível saber quem será o próximo vencedor. Ainda assim, este sistema tem alguns problemas. Quais seriam eles?
+\newpage
+
+\paragraph{O sistema de loteria que se auto executa}
+\paragraph{}
+Este sistema de loteria, conforme projetado, tem dois problemas principais:
+
+\begin{samepage}
+\begin{enumerate}
+\item Quem vai vender os bilhetes da loteria e escolher os números vencedores, se já determinamos que não podemos ter nenhum tipo de centralização que possa comprometer sua administração?
+\item Como podemos garantir que o vencedor da loteria realmente registre boas transações no livro-razão, ao invés de tentar enganar o resto de nós?
+\end{enumerate}
+\end{samepage}
+
+Se quisermos um sistema \textit{sem permissão} ao qual qualquer pessoa possa ingressar, temos que remover o requisito de confiança do sistema deixando-o totalmente \textit{sem necessidade de confiança}. Temos que criar um sistema que tenha as seguintes propriedades:
+
+\begin{samepage}
+\begin{enumerate}
+\item Deve ser possível para todos os integrantes gerar seus próprios bilhetes de loteria, uma vez que não podemos confiar em uma autoridade central;
+\item Deve ser fácil para todos os outros participantes verificar se você ganhou na loteria apenas examinando seu bilhete, uma vez que não podemos confiar em ninguém para manter um registro da combinação vencedora;
+\item Precisamos de alguma forma de puni-lo se você ganhar na loteria, mas escrever transações inválidas no livro-razão, substituindo a confiança em pessoas específicas por confiança em incentivos e punições.
+\end{enumerate}
+\end{samepage}
+
+Vamos falar de todos eles, um de cada vez. A explicação completa de como essa loteria funciona é provavelmente a coisa mais difícil de entender no Bitcoin, então vamos dedicar os próximos três capítulos para cobrir a solução em profundidade.
+
+Sistemas de loteria centralizados padrão como Megasena são executados por alguém gerando um conjunto aleatório de números e um monte de bilhetes com números aleatórios neles. Normalmente, apenas um jogo possui os números que correspondem exatamente ao número aleatório secreto conhecido apenas pela organização que administra a Megasena. Uma vez que não podemos confiar na autoridade central, devemos permitir que qualquer um gere seus próprios números aleatórios.
+
+Como iremos verificar o vencedor? Na Megasena, os proprietários da loteria conhecem a combinação vencedora. Já que não podemos ter isso em um sistema descentralizado, podemos então, criar um sistema onde todos possam concordar em uma faixa de números com antecedência, e se o seu número aleatório cair dentro da faixa, você ganha na loteria. Usaremos um truque criptográfico chamado função hash, para fazer isso. Vamos mergulhar em uma leve introdução a como usar o hash no próximo capítulo.
+
+Finalmente, devemos encontrar uma maneira de puni-lo se você trapacear. Gerar números aleatórios, ou seja, bilhetes de loteria, é basicamente gratuito. Como fazemos para que você realmente tenha que gastar dinheiro para comprar bilhetes quando não há ninguém para vendê-los? Faremos você comprá-los do universo, gastando energia, um recurso escasso que não pode ser criado do nada. Isso será abordado no Capítulo 5.
+
+\paragraph{Prova de trabalho: um quebra-cabeça assimétrico com uso intensivo de energia}
+\paragraph{}
+A solução para esses três problemas é chamada de Prova de Trabalho. Na verdade, foi inventado muito antes do Bitcoin, mais precisamente, em 1993.
+
+Precisamos tornar caro a “compra de bilhetes” para a loteria, caso contrário, as pessoas poderiam gerar um número ilimitado de bilhetes. O que é algo comprovadamente caro, mas isso não precisaria vir de nenhuma autoridade central?
+
+Eu mencionei a física no início do livro, e é aqui que a física joga com o Bitcoin: a primeira lei da termodinâmica diz que a energia não pode ser criada nem destruída. Em outras palavras, não existe almoço grátis quando se trata de energia. A eletricidade é sempre cara porque é um recurso escasso que custa dinheiro real. Você tem que comprá-la dos produtores de energia ou operar sua própria usina. Em qualquer caso, você não pode obter algo do nada.
+
+O conceito por trás da Prova de Trabalho é que você participa de um processo aleatório, semelhante a lançar um dado. Mas, em vez de um dado de seis lados, este tem tantos lados quanto a quantidade de átomos que existem no universo. Para lançar o dado e gerar números de loteria, seu computador deve realizar várias operações, que custam em termos de eletricidade.
+
+Para ganhar na loteria, você deve produzir um número especial que é matematicamente derivado das transações que deseja gravar no livro-razão, mais um número aleatório (explicaremos os detalhes de como isso funciona no próximo capítulo).
+
+Para encontrar esse número vencedor, você pode ter que rolar esse dado bilhões, trilhões ou quatrilhões de vezes, queimando centenas ou milhares de dólares em energia. Como o processo é baseado na aleatoriedade, é possível que todos gerem seus próprios bilhetes de loteria sem uma autoridade central, usando basicamente apenas um número aleatório que pode ser gerado por um software ou hardware e uma lista de transações que desejam gravar no livro-razão.
+
+Agora, embora possa ter levado milhares de dólares para utilizar energia suficiente para encontrar o número aleatório correto, para que todos os outros na rede validem que você é um vencedor, eles precisam realizar duas verificações básicas:
+
+\begin{samepage}
+\begin{enumerate}
+\item O número que você forneceu é menor ou maior do que o limite mágico com o qual todos concordaram?
+\item O número é de fato derivado matematicamente de um conjunto válido de transações que você deseja gravar no livro-razão?
+\end{enumerate}
+\end{samepage}
+
+Isso torna o sistema de Prova de Trabalho \textit{assimétrico}: é muito difícil de gerar, mas muito fácil de ser validado.
+
+Como você consumiu uma quantidade considerável de dinheiro jogando na loteria, deseja que todos aceitem o seu bilhete de loteria premiado. Portanto, você é incentivado a se comportar bem escrevendo apenas transações válidas no livro-razão.
+
+Se você, por exemplo, tentar gastar um dinheiro que já foi gasto, então seu bilhete de loteria "vencedor" será rejeitado por todos os outros, e você perderá todo o dinheiro que gastou comprando a energia para criar o bilhete. Por outro lado, se você escrever transações válidas no livro-razão, iremos recompensá-lo em bitcoin para que você possa pagar suas contas de energia e ainda ter algum lucro.
+
+O sistema de Prova de Trabalho tem a importante propriedade de ser \textit{caro no mundo real}. Assim, se você quisesse atacar a rede coagindo alguns de seus participantes, não só teria que vir à casa deles e assumir o hardware, mas também pagar suas contas de luz.
+
+Hoje, estima-se que a rede Bitcoin como um todo gasta mais energia nesta loteria do que alguns países de médio porte. Essa é a quantidade de energia que você teria que usar para enganar a rede.
+
+Como os participantes provam que usaram essa energia? Discutiremos como a Prova de Trabalho é validada do ponto de vista matemático, à seguir.
