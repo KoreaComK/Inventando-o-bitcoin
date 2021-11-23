@@ -4,28 +4,29 @@
 
 Contanto que nosso livro-razão distribuído exija permissão para participar e possamos confiar que todas as partes sejam honestas, o sistema funcionará. Mas este tipo de design não pode ser escalado para ser usado por milhões de pessoas em todo o mundo.
 
-Os sistemas distribuídos feitos de participantes arbitrários são inerentemente não confiáveis. Algumas pessoas podem sair ocasionalmente. Isso significa que eles podem não saber das nossas transações quando as transmitimos. Outros podem estar ativamente tentando nos fraudar, dizendo que certas transações aconteceram ou não. Novas pessoas podem ingressar na rede e obter cópias conflitantes do livro-razão. Vamos dar uma olhada em como alguém pode tentar trapacear.
+Os sistemas distribuídos feitos de participantes arbitrários são inerentemente não confiáveis. Algumas pessoas podem sair ocasionalmente. Isso significa que eles podem não saber das nossas transações quando as transmitimos. Outros podem estar ativamente tentando nos fraudar, dizendo que certas transações aconteceram ou não. Novas pessoas podem ingressar na rede e obter cópias conflitantes do livro-razão. Vamos dar uma olhada em como alguém pode tentar trapacear.%
 
 \paragraph{O ataque de gastos duplos}
 \paragraph{}
 
 Se eu for a Ana, posso \textit{conspirar} com algumas das outras pessoas e dizer a elas: "Quando eu gastar o meu dinheiro, não escreva em seus livros. Finja que essa transação nunca aconteceu”. Veja como Ana pode realizar um ataque de gasto duplo.
 
-Começando com um saldo de R\$2,00, Ana faz o seguinte:
+Começando com um saldo de $R\$2,00$, Ana faz o seguinte:
 
 \begin{enumerate}
-\item Ela manda seus R\$2,00 para Bruno, para comprar uma barra de chocolate. Agora ela deve ter R\$0,00 sobrando;
+\item Ela manda seus $R\$2,00$ para Bruno, para comprar uma barra de chocolate. Agora ela deve ter $R\$0,00$ sobrando;
 \item Danilo, Evandro e Fernanda estão conspirando com Ana e não registram a sua transação para Bruno em seus livros. Em sua cópia, Ana nunca gastou seu dinheiro;
-\item Carol é uma honesta guardiã do livro-razão. Ela anota a transação de Ana para Bruno. Em seu livro-razão, Ana tem R\$0,00;
+\item Carol é uma honesta guardiã do livro-razão. Ela anota a transação de Ana para Bruno. Em seu livro-razão, Ana tem $R\$0,00$;
 \item Henrique estava de férias por uma semana e não ouviu falar de nenhuma dessas transações. Ele se junta à rede e pede uma cópia do livro-razão;
 \item Henrique obtém 4 cópias falsas (Danilo, Evandro, Fernanda, Ana) e uma cópia honesta (Carol). Como ele determina qual é a real? Sem um sistema melhor, ele busca a maioria dos votos e é enganado ao aceitar o livro-razão falso como sendo o correto;
-\item Ana compra uma barra de chocolate de Henrique usando os R\$2,00 que ela realmente não tem. Henrique aceita porque, pelo que sabe, Ana ainda tem R\$2,00 em sua conta (de acordo com o livro-razão que ele obteve de todos os outros;
-\item Ana agora tem 2 barras de chocolate e R\$4,00 de dinheiro falso foram criados no sistema. Ela paga seus amigos em barras de chocolate, e eles repetem o ataque 100 vezes a cada nova pessoa que entra na rede;
+\item Ana compra uma barra de chocolate de Henrique usando os $R\$2,00$ que ela realmente não tem. Henrique aceita porque, pelo que sabe, Ana ainda tem $R\$2,00$ em sua conta (de acordo com o livro-razão que ele obteve de todos os outros;
+\item Ana agora tem 2 barras de chocolate e $R\$4,00$ de dinheiro falso foram criados no sistema. Ela paga seus amigos em barras de chocolate, e eles repetem o ataque 100 vezes a cada nova pessoa que entra na rede;
 \item Agora, Ana tem todas as barras de chocolate e todos os outros estão segurando grandes quantias de dinheiro falso;
 \item Quando eles tentam gastar o dinheiro que Ana supostamente enviou para eles, Danilo, Evandro e Fernanda que controlam a maioria da rede, rejeitam esses gastos porque sabem que o dinheiro é falso desde o começo.
 \end{enumerate}
 
 Nós temos um problema. Isso é chamado de \textit{falha de consenso}. As pessoas na rede não chegaram a um consenso sobre qual é o estado real. Não tendo um sistema melhor, eles seguiram a regra da maioria, o que levou a pessoas desonestas controlando a rede e gastando dinheiro que não tinham.
+
 Se quisermos fazer um sistema \textit{sem permissão} onde qualquer um pode participar sem pedir, então ele também deve ser resiliente a usuários desonestos.
 
 \paragraph{Resolvendo o problema de consenso distribuído}
@@ -73,7 +74,9 @@ E se fizéssemos uma loteria onde escolheríamos alguém aleatoriamente sempre q
 \begin{enumerate}
 \item Qualquer pessoa no mundo pode participar. Dezenas de milhares de pessoas podem aderir à nossa rede de loteria de contadores;
 \item Quando queremos enviar dinheiro, anunciamos para toda a rede as transações que pretendemos realizar, tal como o fizemos anteriormente;
-\item A cada dez minutos, selecionaremos um vencedor (Como? Ainda não tenho certeza);
+%na minha versao ta assim:
+\item Invés de todas as pessoas anotarem a transação, fazemos uma loteria para ver quem ganha o direito de adicionar as transações no livro razão.
+%\item A cada dez minutos, selecionaremos um vencedor (Como? Ainda não tenho certeza); 
 \item Quando selecionamos um vencedor, essa pessoa escreve todas as transações sobre as quais acabou de ouvir no livro razão;
 \item Se a pessoa gravar transações válidas (conforme considerado por todos os outros participantes da rede) no livro-razão, ela receberá uma taxa;
 \item Todos mantêm uma cópia do livro-razão, adicionando as informações que o último ganhador da loteria produziu;
@@ -81,8 +84,9 @@ E se fizéssemos uma loteria onde escolheríamos alguém aleatoriamente sempre q
 \end{enumerate}
 \end{samepage}
 
-Este sistema é uma melhoria. É impraticável comprometer os participantes deste sistema porque é impossível saber quem será o próximo vencedor. Ainda assim, este sistema tem alguns problemas. Quais seriam eles?
+Este sistema é uma melhoria. É impraticável comprometer os participantes deste sistema porque é impossível saber quem são os participantes e qual será o próximo vencedor. Ainda assim, este sistema tem alguns problemas. Quais seriam eles?
 \newpage
+%no meu livro esse paragrafo separa o inicio do capitulo 3 'prova de trabalho'
 
 \paragraph{O sistema de loteria que se auto executa}
 \paragraph{}
@@ -99,11 +103,18 @@ Se quisermos um sistema \textit{sem permissão} ao qual qualquer pessoa possa in
 
 \begin{samepage}
 \begin{enumerate}
-\item Deve ser possível para todos os integrantes gerar seus próprios bilhetes de loteria, uma vez que não podemos confiar em uma autoridade central;
-\item Deve ser fácil para todos os outros participantes verificar se você ganhou na loteria apenas examinando seu bilhete, uma vez que não podemos confiar em ninguém para manter um registro da combinação vencedora;
-\item Precisamos de alguma forma de puni-lo se você ganhar na loteria, mas escrever transações inválidas no livro-razão, substituindo a confiança em pessoas específicas por confiança em incentivos e punições.
+\item Deve ser possível para todos os integrantes gerar seus próprios bilhetes de loteria, uma vez que não podemos confiar em uma autoridade central;%removido a parte do powerball imagino q pq nao faz sentido em ptbr
+\item Precisamos de alguma maneira para que haja custo ao gerar um bilhete, assim evitando que alguém possa monopolizar a loteria gerando um numero alto de bilhetes de graça. Como fazemos que uma possa precise gastar dinheiro para gerar um bilhete quando não há de quem comprar o bilhete? Faremos você comprar o bilhete do universo, queimando energia, um recurso custoso;
+%Deve ser fácil para todos os outros participantes verificar se você ganhou na loteria apenas examinando seu bilhete, uma vez que não podemos confiar em ninguém para manter um registro da combinação vencedora;
+\item %Deve ser fácil para todos os outros participantes verificar se você ganhou na loteria apenas examinando seu bilhete, uma vez que não podemos confiar em ninguém para manter um registro da combinação vencedora, se ao invés disso, combinamos com antecedência uma faixa de valores se seu bilhete estiver dentro dessa faixa você ganha a loteria, usaremos uma ferramenta criptográfica chamada 'função Hash' para fazer isso;
+
+
+
+Precisamos de alguma forma de puni-lo se você ganhar na loteria, mas escrever transações inválidas no livro-razão, substituindo a confiança em pessoas específicas por confiança em incentivos e punições.
 \end{enumerate}
 \end{samepage}
+
+%Na minha versao do livro nao tem essa explicação adicional sobre o powerball ela ta incluida na listagem acima.
 
 Vamos falar de todos eles, um de cada vez. A explicação completa de como essa loteria funciona é provavelmente a coisa mais difícil de entender no Bitcoin, então vamos dedicar os próximos três capítulos para cobrir a solução em profundidade.
 
@@ -127,23 +138,26 @@ Para ganhar na loteria, você deve produzir um número especial que é matematic
 
 Para encontrar esse número vencedor, você pode ter que rolar esse dado bilhões, trilhões ou quatrilhões de vezes, queimando centenas ou milhares de dólares em energia. Como o processo é baseado na aleatoriedade, é possível que todos gerem seus próprios bilhetes de loteria sem uma autoridade central, usando basicamente apenas um número aleatório que pode ser gerado por um software ou hardware e uma lista de transações que desejam gravar no livro-razão.
 
-Agora, embora possa ter levado milhares de dólares para utilizar energia suficiente para encontrar o número aleatório correto, para que todos os outros na rede validem que você é um vencedor, eles precisam realizar duas verificações básicas:
+Agora, embora possa ter levado milhares de dólares para utilizar energia suficiente para encontrar o número aleatório correto, para que todos os outros na rede validem que você é um vencedor, eles precisam realizar algumas verificações básicas:
 
 \begin{samepage}
 \begin{enumerate}
 \item O número que você forneceu é menor ou maior do que o limite mágico com o qual todos concordaram?
 \item O número é de fato derivado matematicamente de um conjunto válido de transações que você deseja gravar no livro-razão?
+\item As transações que vocês esta registrando são validas perante as regras do Bitcoin: sem gasto duplo, não gerando novos Bitcoin além do previsto e etc.
 \end{enumerate}
 \end{samepage}
-
+%adicionado 
+Prova de trabalho é um processo aleatório que requer muitas computações para achar o numero vencedor. Entretanto requer apenas uma única operação para verificar esta solução. Pense nele como palavras cruzadas ou sudoku. Pode demorar muito tempo para achar uma solução, mas dado as solução é de rápida verificação.
 Isso torna o sistema de Prova de Trabalho \textit{assimétrico}: é muito difícil de gerar, mas muito fácil de ser validado.
 
-Como você consumiu uma quantidade considerável de dinheiro jogando na loteria, deseja que todos aceitem o seu bilhete de loteria premiado. Portanto, você é incentivado a se comportar bem escrevendo apenas transações válidas no livro-razão.
+Como você consumiu uma quantidade considerável de energia, e por sua vez, dinheiro jogando na loteria, deseja que todos aceitem o seu bilhete de loteria premiado. Portanto, você é incentivado a se comportar bem escrevendo apenas transações válidas no livro-razão.
 
 Se você, por exemplo, tentar gastar um dinheiro que já foi gasto, então seu bilhete de loteria "vencedor" será rejeitado por todos os outros, e você perderá todo o dinheiro que gastou comprando a energia para criar o bilhete. Por outro lado, se você escrever transações válidas no livro-razão, iremos recompensá-lo em bitcoin para que você possa pagar suas contas de energia e ainda ter algum lucro.
 
 O sistema de Prova de Trabalho tem a importante propriedade de ser \textit{caro no mundo real}. Assim, se você quisesse atacar a rede coagindo alguns de seus participantes, não só teria que vir à casa deles e assumir o hardware, mas também pagar suas contas de luz.
 
+%Esse trecho nao vai agora na minha versao do livro.( na minha versao ele começa a falar sobre hashing e bits.)
 Hoje, estima-se que a rede Bitcoin como um todo gasta mais energia nesta loteria do que alguns países de médio porte. Essa é a quantidade de energia que você teria que usar para enganar a rede.
 
 Como os participantes provam que usaram essa energia? Discutiremos como a Prova de Trabalho é validada do ponto de vista matemático, à seguir.

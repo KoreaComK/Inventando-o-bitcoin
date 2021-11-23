@@ -29,7 +29,7 @@ A função hash sha256 tem as seguintes propriedades que são úteis para nós:
 \item A saída é determinística: você sempre obtém a mesma saída para a mesma entrada;
 \item A saída é imprevisível: alterar apenas uma letra ou adicionar um espaço à string de entrada mudará drasticamente a saída, tanto que você não pode encontrar nenhuma correlação com os dados de entrada original;
 \item É rápido calcular o hash para dados de entrada de qualquer tamanho;
-\item É basicamente impossível encontrar duas strings que geram hash para a mesma saída;
+\item É impossível encontrar duas strings que geram hash para a mesma saída;
 \item Dado o hash de saída de sha256, é impossível retornar à string de entrada. Chamamos isso de função unilateral;
 \item A saída é sempre um tamanho específico (256 bits para sha256).
 \end{enumerate}
@@ -90,7 +90,7 @@ O objetivo aqui é demonstrar como o número muda drasticamente com base em uma 
 }\end{quote}
 \end{samepage}
 
-Não há como ninguém, nem mesmo um computador, olhar para o número de aparência aleatória resultante e descobrir a string que o criou. Se você quiser brincar com o sha256, há alguns sites online onde você pode experimentar fazer o hash de qualquer informação que desejar.
+Não há como ninguém, nem mesmo um computador, olhar para o número de aparência aleatória resultante e descobrir a string que o criou. Se você quiser brincar com o sha256, há alguns sites online onde você pode experimentar fazer o hash de qualquer informação que desejar. Por exemplo, o \url{https://passwordsgenerator.net/sha256-hash-generator/}.
 
 \paragraph{Criando um hash para ganhar na loteria de prova de trabalho}
 \paragraph{}
