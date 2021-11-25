@@ -19,7 +19,7 @@ Assim como possibilitamos que todos comprassem bilhetes de loteria gerando grand
 
 O par de chaves tem algumas propriedades interessantes. Você pode usar qualquer uma das chaves para criptografar uma mensagem e a outra para descriptografá-la. Além disso, você está convidado a compartilhar sua chave pública com o mundo inteiro. Saber essa chave não permite que eles tenham acesso à sua chave privada.
 
-Vamos dar uma olhada qual o processo que Ana faz para enviar as moedas para Bruno. Para receber uma transação, Bruno gera um par de chaves privadas/públicas e mantém sua chave privada em segredo. Ele produz um \textit{endereço}, um grande número com base em sua chave pública. Bruno, então, compartilha esse número de endereço com Aba para que ela possa enviar moedas para ele.
+Vamos dar uma olhada qual o processo que Ana faz para enviar as moedas para Bruno. Para receber uma transação, Bruno gera um par de chaves privadas/públicas e mantém sua chave privada em segredo. Ele produz um \textit{endereço}, um grande número com base em sua chave pública. Bruno, então, compartilha esse número de endereço com Ana para que ela possa enviar moedas para ele.
 
 Ana agora precisa informar à rede que está enviando moedas para o endereço público de Bruno à partir de seu próprio endereço público. Como ela prova que está autorizada a gastar naquele endereço público? Ela faz isso fornecendo prova de que possui a chave privada desse endereço, mas sem realmente revelar sua chave privada.
 
@@ -46,7 +46,7 @@ Se tivéssemos 2 bits, seriam dois lançamentos de moeda consecutivos. \(2^2\) =
 
 Se você adivinhasse o resultado de 8 lançamentos consecutivos de moeda, seria \(2^8\), ou uma chance em 256.
 
-Uma placa de carro americana tem 6 letras e números. Existem 26 letras e 10 números, portanto, um total de 36 caracteres. Como há seis deles, o número de placas de carros possíveis = \(36^6\), então suas chances de adivinhar a minha são de uma em 2.176.782.336 (uma em dois bilhões)\footnote{A inspiração para esta seção veio de uma excelente postagem do Medium que detalha as probabilidades de uma variedade de eventos. Recomendo a leitura da postagem completa para contexto: \url{https://medium.com/@kerbleski/a-dance-with-infinity-980 relevante9a781}}.
+Uma placa de carro americana tem 6 letras e números. Existem 26 letras e 10 números, portanto, um total de 36 caracteres. Como há seis deles, o número de placas de carros possíveis = \(36^6\), então suas chances de adivinhar a minha são de uma em 2.176.782.336 (uma em dois bilhões)\footnote{A inspiração para esta seção veio de uma excelente postagem no Medium que detalha as probabilidades de uma variedade de eventos. Recomendo a leitura da postagem completa para contexto: \url{https://medium.com/breathe-publication/a-dance-with-infinity-980bd8e9a781}}.
 
 Um cartão de crédito tem dezesseis dígitos. Cada dígito pode ter 10 valores, e há 16 deles, então suas chances de adivinhar meu cartão de crédito são de uma em \(10^{16}\), que é uma em 10.000.000.000.000.000.000 ou aproximadamente uma em dez quintilhões.
 
@@ -78,13 +78,13 @@ Pode ser desconcertante que sua conta Bitcoin seja protegida apenas por acaso, m
 \paragraph{Rastreamento de saldos}
 \paragraph{}
 
-É hora de corrigir uma inverdade final que contamos sobre como o Bitcoin funciona até agora. Na verdade, não há saldos mantidos no livro-razão. O Bitcoin usa um modelo chamado UTXO: Unspent Transaction Outputs.
+É hora de corrigir uma última mentira inofensiva que já dissemos em capítulos anteriores. Na verdade, não há saldos mantidos no livro-razão. O Bitcoin usa um modelo chamado UTXO: Unspent Transaction Outputs.
 
 A ideia do UTXO é que cada transação é um conjunto de entradas que são consumidas para produzir novas saídas. Pense nisso como enviar um monte de moedas para uma máquina que derrete e cunha novas moedas de qualquer valor que quisermos. Um UTXO é simplesmente a palavra para uma saída de transação - uma moeda produzida por uma transação anterior, incluindo uma \textit{transação do tipo coinbase} de recompensa em bloco - que ainda não foi gasta em outro endereço.
 
 Digamos que Ana tenha um endereço que contém 1 bitcoin. Ela deseja enviar 0,3 bitcoins para Bruno. Ela gera uma transação que mostra seu endereço com 1 bitcoin com o seu UTXO como entrada e duas saídas: um novo endereço bitcoin UTXO que vale 0,3 como saída para o endereço do Bruno e um novo UTXO que vale 0,7 como saída para seu próprio endereço como troco. O troco pode ir para o endereço de envio original ou, para melhor privacidade, ela pode enviá-la para um novo endereço que foi gerado instantaneamente.
 
-Já que não há nenhuma maneira na blockchain de dizer quem controla qual endereço (para isso, você precisa saber as chaves privadas correspondentes e vinculá-las às identidades do mundo real), o modelo UTXO permite um mecanismo de privacidade muito bom, permitindo a criação de novos endereços sempre que as moedas são movidas.
+Já que não há nenhuma maneira de dizer quem controla qual endereço na blockchain (para isso, você precisa saber as chaves privadas correspondentes e vinculá-las às identidades do mundo real), o modelo UTXO permite um mecanismo de privacidade muito bom, permitindo a criação de novos endereços sempre que as moedas são movidas.
 
 Assim, para verificar o “saldo” de um determinado endereço, na verdade temos que somar todos os UTXOs que possuem este endereço como saída. O conjunto total de UTXOs atuais no Bitcoin aumenta quando as pessoas enviam de um endereço para vários e diminui quando as pessoas realizam transações de “consolidação” em que moedas de vários endereços são gastas em um endereço.
 
@@ -101,7 +101,7 @@ O software original do Bitcoin publicado por Satoshi veio com uma carteira de so
 
 Ao contrário da carteira do seu banco, que normalmente tem a forma de um único aplicativo móvel ou internet banking, o Bitcoin é um sistema completamente aberto. Portanto, existem centenas de carteiras, a maioria das quais é gratuita, sendo muitas delas também de código aberto, bem como meia dúzia de implementações de carteiras de hardware, com outras sendo produzidas. Qualquer pessoa com conhecimento de programação de computadores pode construir sua própria carteira ou ler o código de uma carteira de código aberto para garantir que nada de suspeito esteja acontecendo. Este é outro lugar no Bitcoin onde a inovação sem permissão está acontecendo em um ritmo rápido, ao contrário do aplicativo móvel do seu banco.
 
-Visto que sua chave privada é a única coisa de que você precisa para gastar suas moedas, você deve guardá-la bem. Se alguém roubar seu cartão de crédito, você pode ligar para a empresa e registrar uma reclamação de fraude e tentar obter seu dinheiro de volta. No Bitcoin, não há intermediário. Se alguém tem sua chave privada, eles controlam suas moedas e não há ninguém para quem você possa ligar.
+Visto que sua chave privada é a única coisa de que você precisa para gastar suas moedas, você deve guardá-la bem. Se alguém roubar seu cartão de crédito, você pode ligar para a empresa e registrar uma reclamação de fraude e tentar obter seu dinheiro de volta. No Bitcoin, não há intermediário. Se alguém tem sua chave privada, eles controlam suas moedas e não há ninguém que você possa ligar.
 
 As chaves privadas também são altamente suscetíveis a perdas. Se você armazenar sua carteira no computador e ele for roubado ou pegar fogo, você tem um problema. Se você seguir as práticas recomendadas do Bitcoin para gerar um novo endereço toda vez que receber um pagamento, armazenar e fazer backup com segurança dessas chaves privadas se tornará algo muito custoso.
 
