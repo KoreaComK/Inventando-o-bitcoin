@@ -6,7 +6,7 @@
 % WITHOUT BLEED
 % US Trade => 6x9
 \documentclass[paper=6in:9in,pagesize=pdftex,
-               headinclude=on,footinclude=on,12pt]{scrbook}
+               headinclude=on,footinclude=on,12pt]{scrreprt}
 %
 % Paper width
 % W = 6in
@@ -162,7 +162,15 @@ Nenhuma parte deste livro pode ser reproduzida em qualquer forma ou por qualquer
   \end{doublespace}
   \end{fullwidth}
 }
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% RAFAEL ADICIONOU ESSA SEçAO PQ FICOU DE SACO CHEIO DE TRADUZIR NOMES E TEM MUITO TEMPO LIVRE
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\TraducaoNomeA}{Ana}
+\newcommand{\TraducaoNomeB}{Bruno}
+\newcommand{\TraducaoNomeC}{Carol}
+\newcommand{\TraducaoNomeH}{Henrique}
+\newcommand{\TraducaoNomeZ}{Zelia}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Inserts a blank page
 \newcommand{\blankpage}{\newpage\hbox{}\thispagestyle{empty}\newpage}
 
@@ -234,16 +242,20 @@ Nenhuma parte deste livro pode ser reproduzida em qualquer forma ou por qualquer
   {\par\normalfont\hfill--\ \chapquote@author\hspace*{\@tempdima}\par\bigskip}
   
 \usepackage{amsmath}
+
+\usepackage[tocindentauto]{tocstyle}
+\usetocstyle{KOMAlike} %the previous line resets it
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                   DOCUMENT
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{document}
 
-\frontmatter
+%\frontmatter
+\pagenumbering{roman}
 
 \title{Inventando o Bitcoin}
-\subtitle{A tecnologia por trás do primeiro dinheiro verdadeiramente escasso e descentralizado explicado}
+\subtitle{Explicando a tecnologia por trás do primeiro dinheiro verdadeiramente escasso e descentralizado}
 \author{Yan Pritzker}
 \date{}
 
@@ -258,7 +270,8 @@ Nenhuma parte deste livro pode ser reproduzida em qualquer forma ou por qualquer
 
 %%
 % Start the main matter (normal chapters)
-\mainmatter
+%\mainmatter
+\pagenumbering{arabic}
 
 \input{pre-texto/introducao}
 \input{capitulos/capitulo01}
