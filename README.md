@@ -25,7 +25,7 @@ Caso queira comprar o livro físico em inglês, [clique aqui](https://www.amazon
 
 ## Versão em PDF
 
-Se você quiser acessar o versão mais recente do livro em pdf  [clique aqui](https://github.com/KoreaComK/Inventando-o-bitcoin/blob/main/pdf/Inventando_o_Bitcoin.pdf).
+Se você quiser acessar o versão mais recente do livro em pdf  [clique aqui](https://github.com/KoreaComK/Inventando-o-bitcoin/raw/main/pdf/Inventando_o_Bitcoin.pdf).
 
 ## Revisores
 
