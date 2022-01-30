@@ -1,7 +1,7 @@
 # Inventando o Bitcoin
 Este repositório contém o código-fonte LaTeX e uma versão em pdf do livro _Inventando o Bitcoin_ escrito por [Yan Pritzker](https://twitter.com/skwp) e traduzido por [KoreacomK](https://twitter.com/KoreaComK).
 
-<p align="center"> ![enter image description here](https://m.media-amazon.com/images/I/512GRQgVVTL.jpg) </p>
+<p align="center"> <img src="https://m.media-amazon.com/images/I/512GRQgVVTL.jpg" alt="Capa"/> </p>
 
 ## Sobre este livro
 
