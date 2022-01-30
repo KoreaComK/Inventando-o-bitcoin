@@ -1,95 +1,18 @@
-\part{Sem Confiança e Permissão}
+%\part{Sem Confiança e Permissão}
+\chapter{Prova de Trabalho}
 \label{ch:capitulo3}
-\chapter*{Sem Confiança e Permissão}
 
-Contanto que nosso livro-razão distribuído exija permissão para participar e possamos confiar que todas as partes sejam honestas, o sistema funcionará. Mas este tipo de design não pode ser escalado para ser usado por milhões de pessoas em todo o mundo.
+%Contanto que nosso livro-razão distribuído exija permissão para participar e possamos confiar que todas as partes sejam honestas, o sistema funcionará. Mas este tipo de design não pode ser escalado para ser usado por milhões de pessoas em todo o mundo.
 
-Os sistemas distribuídos feitos de participantes arbitrários são inerentemente não confiáveis. Algumas pessoas podem sair ocasionalmente. Isso significa que eles podem não saber das nossas transações quando as transmitimos. Outros podem estar ativamente tentando nos fraudar, dizendo que certas transações aconteceram ou não. Novas pessoas podem ingressar na rede e obter cópias conflitantes do livro-razão. Vamos dar uma olhada em como alguém pode tentar trapacear.%
+%Os sistemas distribuídos feitos de participantes arbitrários são inerentemente não confiáveis. Algumas pessoas podem sair ocasionalmente. Isso significa que eles podem não saber das nossas transações quando as transmitimos. Outros podem estar ativamente tentando nos fraudar, dizendo que certas transações aconteceram ou não. Novas pessoas podem ingressar na rede e obter cópias conflitantes do livro-razão. Vamos dar uma olhada em como alguém pode tentar trapacear.%
 
-\paragraph{O ataque de gastos duplos}
-\paragraph{}
 
-Se eu for a Ana, posso \textit{conspirar} com algumas das outras pessoas e dizer a elas: "Quando eu gastar o meu dinheiro, não escreva em seus livros. Finja que essa transação nunca aconteceu”. Veja como Ana pode realizar um ataque de gasto duplo.
-
-Começando com um saldo de $R\$2,00$, Ana faz o seguinte:
-
-\begin{enumerate}
-\item Ela manda seus $R\$2,00$ para Bruno, para comprar uma barra de chocolate. Agora ela deve ter $R\$0,00$ sobrando;
-\item Danilo, Evandro e Fernanda estão conspirando com Ana e não registram a sua transação para Bruno em seus livros. Em sua cópia, Ana nunca gastou seu dinheiro;
-\item Carol é uma honesta guardiã do livro-razão. Ela anota a transação de Ana para Bruno. Em seu livro-razão, Ana tem $R\$0,00$;
-\item Henrique estava de férias por uma semana e não ouviu falar de nenhuma dessas transações. Ele se junta à rede e pede uma cópia do livro-razão;
-\item Henrique obtém 4 cópias falsas (Danilo, Evandro, Fernanda, Ana) e uma cópia honesta (Carol). Como ele determina qual é a real? Sem um sistema melhor, ele busca a maioria dos votos e é enganado ao aceitar o livro-razão falso como sendo o correto;
-\item Ana compra uma barra de chocolate de Henrique usando os $R\$2,00$ que ela realmente não tem. Henrique aceita porque, pelo que sabe, Ana ainda tem $R\$2,00$ em sua conta (de acordo com o livro-razão que ele obteve de todos os outros;
-\item Ana agora tem 2 barras de chocolate e $R\$4,00$ de dinheiro falso foram criados no sistema. Ela paga seus amigos em barras de chocolate, e eles repetem o ataque 100 vezes a cada nova pessoa que entra na rede;
-\item Agora, Ana tem todas as barras de chocolate e todos os outros estão segurando grandes quantias de dinheiro falso;
-\item Quando eles tentam gastar o dinheiro que Ana supostamente enviou para eles, Danilo, Evandro e Fernanda que controlam a maioria da rede, rejeitam esses gastos porque sabem que o dinheiro é falso desde o começo.
-\end{enumerate}
-
-Nós temos um problema. Isso é chamado de \textit{falha de consenso}. As pessoas na rede não chegaram a um consenso sobre qual é o estado real. Não tendo um sistema melhor, eles seguiram a regra da maioria, o que levou a pessoas desonestas controlando a rede e gastando dinheiro que não tinham.
-
-Se quisermos fazer um sistema \textit{sem permissão} onde qualquer um pode participar sem pedir, então ele também deve ser resiliente a usuários desonestos.
-
-\paragraph{Resolvendo o problema de consenso distribuído}
-\paragraph{}
-Agora vamos resolver um dos problemas mais difíceis da ciência da computação: consenso distribuído entre as partes, onde alguns são desonestos ou não confiáveis. Este problema é conhecido como Problema dos Generais Bizantinos e é a chave que Satoshi Nakamoto usou para criar a invenção do Bitcoin. Vamos começar de forma simples.
-
-Precisamos fazer com que várias pessoas concordem com os dados do livro-razão sem saber se os  responsáveis pelo livro-razão têm anotado todas as transações de maneira correta e honesta.
-
-Uma solução ingênua é simplesmente nomear os representantes honestos do livro-razão. Em vez de todos começarem a escrever nele, escolhemos um punhado de amigos como Carol, Giovana, Fernanda e Zélia para fazer isso, porque eles não mentem e todo mundo sabe que nunca vão para as festas nos fins de semana.
-
-Então, toda vez que temos que fazer uma transação, em vez de contar a todos os nossos amigos, apenas ligamos para Carol e a sua gangue. Eles ficam felizes em manter o livro-razão para nós por uma pequena taxa. Depois de escreverem no livro-razão, eles ligam para todos os outros e informam sobre as novas linhas incluídas, que todos ainda mantêm como backup.
-
-Este sistema funciona muito bem, exceto que um dia, agentes do governo aparecem e querem saber quem está administrando este sistema financeiro paralelo. Eles prendem a Carol e seus amigos e os levam embora, pondo fim ao livro-razão distribuído. Todos nós temos backups não confiáveis, não podemos confiar uns nos outros e não podemos descobrir de quem é o backup que deve ser usado para iniciar um novo sistema.
-
-Em vez de um fechamento total, o governo também pode ameaçar discretamente os responsáveis pelo registro com pena de prisão se eles aceitarem as transações da Ana (que é suspeita de vender drogas). O sistema agora está efetivamente sob controle central e não podemos mais dizer que ele não tem permissão.
-
-E se tentarmos a democracia? Vamos encontrar um grupo de 50 pessoas honestas e realizaremos eleições todos os dias para manter a rotação de quem escreve no livro-razão. Todos na rede têm direito a voto.
-
-Este sistema funciona muito bem até que as pessoas apareçam e usem violência ou coerção financeira para alcançar os mesmos objetivos de antes:
-
-\begin{samepage}
-\begin{enumerate}
-\item Forçar o eleitorado a votar nos contadores de sua escolha;
-\item Forçar os detentores do livro-razão eleitos a escreverem lançamentos falsos nele.
-\end{enumerate}
-\end{samepage}
-
-Nós temos um problema. Sempre que designamos pessoas específicas para manter o livro-razão, devemos confiar que elas são honestas, e não temos como defendê-las de serem coagidas por alguém a cometer atos desonestos e corromper nosso livro-razão.
-
-\paragraph{Identidade equivocada e ataques Sybil}
-\paragraph{}
-Até agora, examinamos dois métodos fracassados de garantir a honestidade: um usava contadores específicos e conhecidos e o outro usava contadores eleitos e rotativos. A falha de ambos os sistemas foi que a base de nossa confiança estava ligada à identidade do mundo real: ainda tínhamos que identificar especificamente os indivíduos que seriam responsáveis por nosso livro-razão.
-
-Sempre que assumimos confiança com base na identidade, nos abrimos para algo chamado \textit{Ataque Sybil}. Este é basicamente um nome chique para personificação; tem o nome de uma mulher com transtorno de personalidade múltipla.
-
-Você já recebeu uma mensagem estranha de um de seus amigos apenas para descobrir que o telefone dele havia sido pego pelo irmão? Quando se trata de bilhões ou mesmo trilhões de dólares em jogo, as pessoas justificam todo tipo de violência para roubar aquele telefone e enviar aquela mensagem. É fundamental evitarmos que as pessoas que mantêm nosso livro-razão sejam coagidas de alguma forma. Como podemos fazer isso?
-
-\paragraph{Vamos construir uma loteria}
-\paragraph{}
-Se não queremos a possibilidade de pessoas serem comprometidas por ameaças de violência ou suborno, precisamos de um sistema com tantos participantes que seria impraticável para alguém coagi-los. Deve ser o caso de que qualquer pessoa possa participar de nosso sistema, e que não tenhamos que introduzir nenhum tipo de votação, que está sujeita à coerção pela violência e compra de votos.
-
-E se fizéssemos uma loteria onde escolheríamos alguém aleatoriamente sempre que quiséssemos escrever no livro-razão? Aqui está nosso primeiro rascunho deste design:
-
-\begin{samepage}
-\begin{enumerate}
-\item Qualquer pessoa no mundo pode participar. Dezenas de milhares de pessoas podem aderir à nossa rede de loteria de contadores;
-\item Quando queremos enviar dinheiro, anunciamos para toda a rede as transações que pretendemos realizar, tal como o fizemos anteriormente;
-%na minha versao ta assim:
-\item Invés de todas as pessoas anotarem a transação, fazemos uma loteria para ver quem ganha o direito de adicionar as transações no livro razão.
-%\item A cada dez minutos, selecionaremos um vencedor (Como? Ainda não tenho certeza); 
-\item Quando selecionamos um vencedor, essa pessoa escreve todas as transações sobre as quais acabou de ouvir no livro razão;
-\item Se a pessoa gravar transações válidas (conforme considerado por todos os outros participantes da rede) no livro-razão, ela receberá uma taxa;
-\item Todos mantêm uma cópia do livro-razão, adicionando as informações que o último ganhador da loteria produziu;
-\item Usamos o intervalo de dez minutos para garantir que a maioria das pessoas tenha tempo para atualizar seus livros contábeis entre os sorteios da loteria.
-\end{enumerate}
-\end{samepage}
-
-Este sistema é uma melhoria. É impraticável comprometer os participantes deste sistema porque é impossível saber quem são os participantes e qual será o próximo vencedor. Ainda assim, este sistema tem alguns problemas. Quais seriam eles?
-\newpage
+%\newpage
 %no meu livro esse paragrafo separa o inicio do capitulo 3 'prova de trabalho'
 
-\paragraph{O sistema de loteria que se auto executa}
-\paragraph{}
+%\section**{O sistema de loteria que se auto executa}
+%\paragraph{}
+
 Este sistema de loteria, conforme projetado, tem dois problemas principais:
 
 \begin{samepage}
@@ -101,18 +24,16 @@ Este sistema de loteria, conforme projetado, tem dois problemas principais:
 
 Se quisermos um sistema \textit{sem permissão} ao qual qualquer pessoa possa ingressar, temos que remover o requisito de confiança do sistema deixando-o totalmente \textit{sem necessidade de confiança}. Temos que criar um sistema que tenha as seguintes propriedades:
 
-\begin{samepage}
+
 \begin{enumerate}
 \item Deve ser possível para todos os integrantes gerar seus próprios bilhetes de loteria, uma vez que não podemos confiar em uma autoridade central;%removido a parte do powerball imagino q pq nao faz sentido em ptbr
 \item Precisamos de alguma maneira para que haja custo ao gerar um bilhete, assim evitando que alguém possa monopolizar a loteria gerando um numero alto de bilhetes de graça. Como fazemos que uma possa precise gastar dinheiro para gerar um bilhete quando não há de quem comprar o bilhete? Faremos você comprar o bilhete do universo, queimando energia, um recurso custoso;
 %Deve ser fácil para todos os outros participantes verificar se você ganhou na loteria apenas examinando seu bilhete, uma vez que não podemos confiar em ninguém para manter um registro da combinação vencedora;
-\item %Deve ser fácil para todos os outros participantes verificar se você ganhou na loteria apenas examinando seu bilhete, uma vez que não podemos confiar em ninguém para manter um registro da combinação vencedora, se ao invés disso, combinamos com antecedência uma faixa de valores se seu bilhete estiver dentro dessa faixa você ganha a loteria, usaremos uma ferramenta criptográfica chamada 'função Hash' para fazer isso;
+\item Deve ser fácil para todos os outros participantes verificar se você ganhou na loteria apenas examinando seu bilhete, uma vez que não podemos confiar em ninguém para manter um registro da combinação vencedora, se ao invés disso, combinamos com antecedência uma faixa de valores se seu bilhete estiver dentro dessa faixa você ganha a loteria, usaremos uma ferramenta criptográfica chamada 'função Hash' para fazer isso;
 
-
-
-Precisamos de alguma forma de puni-lo se você ganhar na loteria, mas escrever transações inválidas no livro-razão, substituindo a confiança em pessoas específicas por confiança em incentivos e punições.
+%Precisamos de alguma forma de puni-lo se você ganhar na loteria, mas escrever transações inválidas no livro-razão, substituindo a confiança em pessoas específicas por confiança em incentivos e punições.
 \end{enumerate}
-\end{samepage}
+
 
 %Na minha versao do livro nao tem essa explicação adicional sobre o powerball ela ta incluida na listagem acima.
 
@@ -124,8 +45,8 @@ Como iremos verificar o vencedor? Na Megasena, os proprietários da loteria conh
 
 Finalmente, devemos encontrar uma maneira de puni-lo se você trapacear. Gerar números aleatórios, ou seja, bilhetes de loteria, é basicamente gratuito. Como fazemos para que você realmente tenha que gastar dinheiro para comprar bilhetes quando não há ninguém para vendê-los? Faremos você comprá-los do universo, gastando energia, um recurso escasso que não pode ser criado do nada. Isso será abordado no Capítulo 5.
 
-\paragraph{Prova de trabalho: um quebra-cabeça assimétrico com uso intensivo de energia}
-\paragraph{}
+\section*{Prova de trabalho: um quebra-cabeça assimétrico com uso intensivo de energia}
+%\paragraph{}
 A solução para esses três problemas é chamada de Prova de Trabalho. Na verdade, foi inventado muito antes do Bitcoin, mais precisamente, em 1993.
 
 Precisamos tornar caro a “compra de bilhetes” para a loteria, caso contrário, as pessoas poderiam gerar um número ilimitado de bilhetes. O que é algo comprovadamente caro, mas isso não precisaria vir de nenhuma autoridade central?
@@ -158,6 +79,129 @@ Se você, por exemplo, tentar gastar um dinheiro que já foi gasto, então seu b
 O sistema de Prova de Trabalho tem a importante propriedade de ser \textit{caro no mundo real}. Assim, se você quisesse atacar a rede coagindo alguns de seus participantes, não só teria que vir à casa deles e assumir o hardware, mas também pagar suas contas de luz.
 
 %Esse trecho nao vai agora na minha versao do livro.( na minha versao ele começa a falar sobre hashing e bits.)
-Hoje, estima-se que a rede Bitcoin como um todo gasta mais energia nesta loteria do que alguns países de médio porte. Essa é a quantidade de energia que você teria que usar para enganar a rede.
+%Hoje, estima-se que a rede Bitcoin como um todo gasta mais energia nesta loteria do que alguns países de médio porte. Essa é a quantidade de energia que você teria que usar para enganar a rede.
 
-Como os participantes provam que usaram essa energia? Discutiremos como a Prova de Trabalho é validada do ponto de vista matemático, à seguir.
+%Como os participantes provam que usaram essa energia? Discutiremos como a Prova de Trabalho é validada do ponto de vista matemático, à seguir.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Antes de podermos discutir como a Prova de Trabalho é validada, precisaremos de uma introdução rápida em Ciência da Computação sobre dois conceitos: bits e criação de hash.
+
+\section*{Criando um Hash}
+%\paragraph{}
+
+O quebra-cabeça de Prova de Trabalho assimétrico do Bitcoin envolve o uso de uma função hash. Da álgebra básica, sabemos que uma função é uma caixa onde você \textit{insere} um valor de entrada \textit{x} e obtém um valor de saída \textit{f(x)}. Por exemplo, a função \textit{f(x)=2x} pega um valor e o multiplica por dois. Portanto, a entrada \textit{x=2} nos dá a \textit{saída f(x)=4}.
+
+Uma função hash é uma função especial, onde você insere qualquer sequência de letras, números ou outros dados, como “Olá, mundo”, e obtém um número gigante que parece algo totalmente aleatório:
+
+\begin{quote}{1111811713258219242661329357757490458455 \newline
+4890446643616001126584346633541502095
+}\end{quote}
+
+A função hash particular usada acima na string "Hello, World" é chamada de sha256 e, por acaso, é a que o Bitcoin usa.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=7cm]{imagens/hash-capitulo-04.jpg}
+  \caption*{\textit{\small Fazendo o hash de um string}}
+\end{figure}
+
+A função hash sha256 tem as seguintes propriedades que são úteis para nós:
+
+\begin{enumerate}
+\item A saída é determinística: você sempre obtém a mesma saída para a mesma entrada;
+\item A saída é imprevisível: alterar apenas uma letra ou adicionar um espaço à string de entrada mudará drasticamente a saída, tanto que você não pode encontrar nenhuma correlação com os dados de entrada original;
+\item É rápido calcular o hash para dados de entrada de qualquer tamanho;
+\item É impossível encontrar duas strings que geram hash para a mesma saída;
+\item Dado o hash de saída de sha256, é impossível retornar à string de entrada. Chamamos isso de função unilateral;
+\item A saída é sempre um tamanho específico (256 bits para sha256).
+\end{enumerate}
+
+\section*{Uma introdução rápida sobre bits}
+%\paragraph{}
+
+O sistema numérico que você conhece e adora, composto dos números de 0 a 9, é chamado de \textit{decimal} porque possui dez dígitos. Os computadores, por outro lado, preferem um sistema numérico diferente, feito de uns e zeros, indicando a presença ou ausência de um sinal elétrico. Este sistema numérico é chamado de \textit{binário}.
+
+No sistema decimal, você usa apenas os dígitos de 0 a 9. Se você usar apenas um dígito, poderá representar dez números diferentes, de 0 a 9. Se usar dois dígitos, poderá representar 10x10=100 números diferentes: 00, 01,\ldots a 99. Para três dígitos, você pode ter 10x10x10=1000 números: 000, 001,\ldots a 999.
+
+Espero que você esteja começando a ver um padrão. Para descobrir o tamanho de um número que podemos representar com N dígitos, multiplicamos dez por ele mesmo N vezes. Em outras palavras, \(10^N\), ou 10 elevado à potência de N.
+
+O binário funciona da mesma maneira. A única coisa que muda é o número de dígitos que estão disponíveis para nós. Embora estejamos acostumados com decimais com dez dígitos, um \textit{dígito binário} ou \textit{bit} só pode ter dois valores: zero e um.
+
+Se 1 bit pode representar dois valores, então dois bits podem representar 4 valores: 00, 01, 10, 11. Você pode calcular isso multiplicando 2x2, pois cada dígito pode ter dois valores.
+
+Três bits podem representar 2 x 2 x 2 = \(2^3\) = 8 valores, que são 000, 001, 010, 011, 100, 101, 110, 111.
+
+Portanto, um número \textit{binário} de N \textit{bits} pode ser representado como \(2^N\) valores diferentes.
+
+Portanto, o número de valores exclusivos que você pode representar com 256 bits, o tamanho da função de hashing sha256, é \(2^{256}\). Esse é um número gigante, quase inconcebível para a mente humana. Representado em decimal, esse número tem 78 dígitos. Para colocar isso em perspectiva, isso é mais ou menos o número estimado de átomos em todo o universo conhecido.
+
+
+\begin{multline}
+\begin{aligned}
+2^{256} = & 115.792.089.237.316.195.423.570.985.008.\\
+& 687.907.853.269.984.665.640.564.039.457.\\
+& 584.007.913.129.639.936
+\end{aligned}
+\end{multline}
+
+
+Este é o número de saídas possíveis quando você faz o hash de qualquer string com a função de hash sha256. Portanto, é efetivamente impossível prever como será o número produzido por essa função. Seria como prever 256 jogadas de moeda em sequência ou adivinhar a localização de um átomo específico que escolhi em algum lugar do universo.
+
+Este número é muito longo para continuar escrevendo, então diremos apenas \(2^{256}\) de agora em diante, mas espero que isso acione uma imagem mental de um universo de possibilidades para você.
+
+\section*{Vamos transformar algumas strings em hash}
+%\paragraph{}
+
+Aqui estão algumas strings de exemplo e seus hashes sha256. O resultado está em números decimais, embora dentro de um computador eles apareceriam como uma sequência binária de uns e zeros.
+
+O objetivo aqui é demonstrar como o número muda drasticamente com base em uma pequena mudança na string de entrada. Você não pode prever a saída produzida pela função hash com base no que você colocou nela:
+
+
+\begin{quote}{"Hello World!"\newline
+52740724284578854442640185928423074974\newline
+81806529570658746454048816174655413720\newline
+}\end{quote}
+
+
+\begin{samepage}
+\begin{quote}{"Hello World!!"\newline
+958633198749395357316023441946434972583\newline
+74513872780665335270495834770720452323\newline
+}\end{quote}
+\end{samepage}
+
+Não há como ninguém, nem mesmo um computador, olhar para o número de aparência aleatória resultante e descobrir a string que o criou. Se você quiser brincar com o sha256, há alguns sites online onde você pode experimentar fazer o hash de qualquer informação que desejar. por exemplo \url{https://passwordsgenerator.net/sha256-hash-generator/}
+
+\section*{Criando um hash para ganhar na loteria de prova de trabalho}
+%\paragraph{}
+ 
+Tudo bem, agora estamos prontos para falar sobre a parte chave da magia. Dissemos que há \(2^{256}\) valores de saída de sha256 possíveis no total. Para tornar mais fácil de entender, vamos fingir que há apenas um total de 1000 saídas hash possíveis.
+
+O nosso sistema de loteria funciona assim:
+
+\begin{enumerate}
+\item Ana anuncia que deseja enviar R\$2,00 para Bruno;
+\item Todo mundo que quer tentar a sorte na loteria pega esta transação “Ana envia R\$2,00 para Bruno”, adicionando um número aleatório chamado \textit{nonce} (número usado apenas uma vez) no final. Isso é para ter certeza de que a string que eles estão fazendo o hash é diferente de qualquer outra pessoa, ajudando-os a encontrar um número vencedor na loteria;
+\item Se esse número for menor do que o \textit{Número Alvo} (veremos isso em um segundo), eles ganham na loteria;
+\item Se o número que eles obtiverem for maior do que o número alvo, eles tentam fazer o hash novamente, adicionando nonces aleatórios: “Ana envia R\$2,00 para Bruno com nonce = 12345”, “Ana envia R\$2,00 para Bruno com nonce = 92435”, “Ana envia R\$2,00 para Bruno nonce = 132849012348092134” e assim por diante, até que o número hash resultante seja menor que o \textit{Número Alvo}.
+\end{enumerate}
+
+Pode levar muitas, muitas tentativas para encontrar um hash que seja menor que o número alvo. Portanto, a ideia aqui é esta: se houver 1000 hashes possíveis e definirmos o número alvo como 100, qual porcentagem de hashes está abaixo do alvo?
+
+Esta é a matemática básica: de 1000 números possíveis, de zero a 999, existem 100 números que são menores que 100 e 900 números que são maiores. Portanto, 100/1000 ou 10\% dos hashes são menores que o destino. Então, se você fizer um hash com qualquer string e sua função hash produzir 1000 saídas diferentes, você espera obter um hash abaixo do alvo limitado a 100, cerca de 10\% do tempo.
+
+É assim que a loteria funciona: nós definimos um \textit{alvo} e todos concordamos com ele (falaremos sobre como isso funciona em breve). Então, pegamos as transações sobre as quais as pessoas estão nos contando e fazemos o hash, adicionando um nonce aleatório no final. Assim que alguém encontra um hash que está dentro do limite imposto pelo alvo, nós o anunciamos para todos na rede:
+
+Olá pessoal:
+\begin{itemize}
+\item Peguei as transações: "Ana envia R\$2,00 para Bruno, Carol envia R\$5,00 para Ana";
+\item Adicionei o nonce "32895";
+\item O resultado foi um hash com retorno 42, que é menor que o alvo limite de 100;
+\item Aqui está minha prova de trabalho: os dados da transação, o nonce que usei e o hash que foi produzido com base nessas entradas.
+\end{itemize}
+
+Para isso, talvez seja necessário bilhões de tentativas de hash para conseguir o resultado, gastando milhares de dólares em energia, mas todos podem imediatamente validar que fiz certo porque eles podem fazer o hash em uma única tentativa, já que dei a entrada e o saída esperada. Lembre-se de que os hashes são impossíveis de serem revertidos, mas são fáceis de serem calculados!
+
+Como isso está ligado ao gasto de energia? Bem, já dissemos que o conjunto de todos os hashes possíveis é na verdade um número gigante que é quase tão grande quanto o número de átomos no universo. Agora podemos definir o \textit{alvo} como baixo para que apenas uma pequena fração dos hashes sejam válidos. Isso significa que qualquer pessoa que quiser encontrar um hash válido terá que gastar uma grande quantidade de tempo e processamento o que significa que terá que gastar eletricidade, para encontrar um número de hash menor que nosso alvo.
+
+Quanto menor o alvo, mais tentativas serão necessárias para encontrar um número que funcione. Quanto maior o alvo, mais rápido podemos encontrar um hash vencedor.

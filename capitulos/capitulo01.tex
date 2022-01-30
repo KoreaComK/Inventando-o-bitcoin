@@ -1,6 +1,6 @@
-\part{O que é o Bitcoin?}
+\chapter{O que é o Bitcoin?}
 \label{ch:capitulo1}
-\section*{O que é o Bitcoin?}
+%\section**{O que é o Bitcoin?}
 
 O Bitcoin é um \textit{dinheiro eletrônico ponto a ponto}. Um dinheiro digital que pode ser transferido entre pessoas ou computadores sem nenhum intermediário confiável (como um banco) e cuja emissão não está sob o controle de nenhuma parte.
 
@@ -24,17 +24,17 @@ O Bitcoin oferece uma alternativa ao dinheiro digital controlado centralmente co
 \end{enumerate}
 \end{samepage}
 
-\newpage
+%\newpage
 
 \begin{figure}
   \centering
   \includegraphics[width=10cm]{imagens/bitcoin-capitulo-1.png}
-  \caption{bitcoin e Bitcoin}
+  \caption*{\textit{\small bitcoin e Bitcoin}}
 \end{figure}
   
-\newpage
-\paragraph{De onde veio o Bitcoin?}
-\paragraph{}
+%\newpage
+\section*{De onde veio o Bitcoin?}
+%\paragraph{}
 
 O Bitcoin foi inventado por uma pessoa ou grupo de pessoas, conhecido pelo pseudônimo de Satoshi Nakamoto, por volta de 2008. Ninguém sabe a identidade dessa(s) pessoa(s) e, pelo que sabemos, sumiram, não se houve falar dele(s) há anos.
 
@@ -44,19 +44,19 @@ Embora essa não é o primeiro  anuncio do Bitcoin, contem uma bom sumario das m
 Extraí as partes relevantes abaixo. Na próxima seção, explicaremos algumas dessas declarações e as motivações de Satoshi para a invenção do Bitcoin e quais problemas ele buscava solucionar.
 
 \begin{quotation}\begin{samepage}
-\enquote{
-Desenvolvi um novo sistema de e-cash P2P de código aberto chamado Bitcoin. É totalmente descentralizado, sem servidor central ou partes confiáveis, porque tudo é baseado em criptografia ao invés da confiança. [\ldots]
+\enquote{\textit{
+Desenvolvi um novo sistema de e-cash P2P de código aberto chamado Bitcoin. É totalmente descentralizado, sem servidor central ou partes confiáveis, porque tudo é baseado em criptografia ao invés da confiança. [\ldots]}
 
-A raiz do problema com a moeda convencional é toda a confiança necessária para fazê-la funcionar. O banco central deve ser confiável para não depreciar a moeda, mas a história das moedas fiduciárias está cheia de violações dessa confiança. Os bancos devem ser confiáveis para manter nosso dinheiro e transferi-lo eletronicamente, mas eles o emprestam em ondas de bolhas de crédito ficando apenas com uma fração na reserva. Temos que confiar neles à nossa privacidade, confiar que não irão permitir que ladrões de identidade drenem nossas contas. Seus enormes custos indiretos tornam os micro pagamentos impossíveis.
+\textit{A raiz do problema com a moeda convencional é toda a confiança necessária para fazê-la funcionar. O banco central deve ser confiável para não depreciar a moeda, mas a história das moedas fiduciárias está cheia de violações dessa confiança. Os bancos devem ser confiáveis para manter nosso dinheiro e transferi-lo eletronicamente, mas eles o emprestam em ondas de bolhas de crédito ficando apenas com uma fração na reserva. Temos que confiar neles à nossa privacidade, confiar que não irão permitir que ladrões de identidade drenem nossas contas. Seus enormes custos indiretos tornam os micro pagamentos impossíveis.}
 
-Na geração passada, os sistemas de compartilhamento de tempo multiusuário tinham um problema semelhante. Antes da criptografia forte, os usuários tinham que confiar na proteção por senha para proteger seus arquivos[\ldots]
+\textit{Na geração passada, os sistemas de compartilhamento de tempo multiusuário tinham um problema semelhante. Antes da criptografia forte, os usuários tinham que confiar na proteção por senha para proteger seus arquivos[\ldots]}
 
-Então, a criptografia forte tornou-se disponível para as massas e a confiança não era mais necessária. Os dados podiam ser protegidos de uma forma fisicamente impossível para outras pessoas acessarem, não importa por que razão, não importa quão boa seja a desculpa, não importa o quê seja criptografado.
+\textit{Então, a criptografia forte tornou-se disponível para as massas e a confiança não era mais necessária. Os dados podiam ser protegidos de uma forma fisicamente impossível para outras pessoas acessarem, não importa por que razão, não importa quão boa seja a desculpa, não importa o quê seja criptografado.}
  
-É hora de termos o mesmo no nosso dinheiro. Com a moeda eletrônica baseada em prova criptográfica, sem a necessidade de confiar em um intermediário, o dinheiro pode ser seguro e as transações com o mínimo de esforço.[\ldots]
+\textit{É hora de termos o mesmo no nosso dinheiro. Com a moeda eletrônica baseada em prova criptográfica, sem a necessidade de confiar em um intermediário, o dinheiro pode ser seguro e as transações com o mínimo de esforço.[\ldots]}
  
-A solução do Bitcoin é usar uma rede ponto a ponto para verificar se há gastos duplos. Em suma, a rede funciona como um servidor de carimbo de data/hora distribuído, carimbando a primeira transação a gastar uma moeda. Ele tira proveito da natureza da informação ser fácil de ser espalhada, mas difícil de ser reprimida. Para obter detalhes sobre seu funcionamento, consulte o design desta solução no artigo disponibilizado em
-\newline http://www.bitcoin.org/bitcoin.pdf}
+\textit{A solução do Bitcoin é usar uma rede ponto a ponto para verificar se há gastos duplos. Em suma, a rede funciona como um servidor de carimbo de data/hora distribuído, carimbando a primeira transação a gastar uma moeda. Ele tira proveito da natureza da informação ser fácil de ser espalhada, mas difícil de ser reprimida. Para obter detalhes sobre seu funcionamento, consulte o design desta solução no artigo disponibilizado em
+\newline \textcolor{red}{http://www.bitcoin.org/bitcoin.pdf}}}
 \begin{flushright} -- Satoshi Nakamoto
 \end{flushright}\end{samepage}\end{quotation}
 
@@ -66,9 +66,9 @@ Com o tempo, mais pessoas se juntaram à rede, usando seus computadores para adi
 
 O Bitcoin não foi uma invenção criada do nada. Em seu artigo, Satoshi citou várias tentativas importantes de implementar sistemas semelhantes, incluindo o b-money de Wei Dai e o Hashcash de Adam Back. A invenção do Bitcoin apoiou-se nos ombros de gigantes e, no entanto, foi profunda em sua simplicidade ao criar o primeiro sistema verdadeiramente descentralizado - isto é, que não está sob controle de uma pessoa - para emitir e transferir dinheiro digital.
 
-\newpage
-\paragraph{O Bitcoin resolve quais problemas?}
-\paragraph{}
+%\newpage
+\section*{O Bitcoin resolve quais problemas?}
+%\paragraph{}
  
 Vamos detalhar algumas das postagens do Satoshi. Ao longo do livro, abordaremos como esses conceitos são realmente implementados. Não é importante que você entenda imediatamente todos os conceitos difíceis desta seção, mas você vai querer ver quais eram os objetivos do Satoshi, para que possamos almejá-los à medida que avançamos no exercício de \textit{Inventar o Bitcoin}.
 
@@ -80,24 +80,30 @@ Vamos detalhar algumas das postagens do Satoshi. Ao longo do livro, abordaremos 
 O P2P significa ponto a ponto (\textit{peer-to-peer}, no inglês) e indica um sistema onde uma pessoa pode interagir com outra sem intermediários, como sendo pares iguais. Você deve se lembrar das tecnologias de compartilhamento de arquivos P2P, como Napster, Kazaa e BitTorrent, que permitiam que as pessoas compartilhassem música sem baixá-las de um site. O Satoshi projetou o Bitcoin para permitir que as pessoas troquem \textit{e-cash}, dinheiro eletrônico, sem passar por um intermediário da mesma maneira.
 
 O software é de \textit{código aberto}, o que significa que qualquer pessoa pode ver como funciona e contribuir para o projeto. Isso é importante porque elimina a exigência de confiança no próprio Satoshi. Não precisamos acreditar em nada que o Satoshi escreveu em sua postagem sobre como o software funciona. Podemos olhar o código e verificar como ele funciona nós mesmos. Melhor ainda, se não gostarmos de algo, podemos mudar.
+
 \paragraph{}
 \textit{É totalmente descentralizado, sem servidor central ou partes confiáveis[\ldots]}
 \paragraph{}
+
 Satoshi menciona que o sistema é \textit{descentralizado} para diferenciá-lo de sistemas que possuem controle central. As tentativas anteriores de criar um dinheiro digital como o DigiCash de David Chaum de 1989, eram apoiadas por um \textit{servidor central}, um computador ou conjunto de computadores que era responsável pela emissão e verificação de pagamento, administrado por uma empresa.
 
 Esses esquemas de emissão de dinheiro privado, controlados por uma entidade central, estavam fadados ao fracasso. As pessoas não podem contar com um dinheiro que pode ir embora quando a empresa fecha as portas, é hackeada, sofre uma falha no servidor ou, é fechada pelo governo.
 
 A natureza descentralizada do Bitcoin traz de volta o conceito de dinheiro para o mundo digital: você pode transferi-lo sem falar com ninguém, sem pedir permissão, 24 horas por dia, 365 dias por ano, sem passar por nenhuma autoridade que exige confiança.
+
 \paragraph{}
 \textit{\dots tudo é baseado em criptografia ao invés de confiança}
 \paragraph{}
+
 A internet e a maioria dos sistemas de computadores modernos são construídos em torno de criptografia, um método de obscurecer informação de tal maneira que apenas o receptor da informação possa decodificar ela.
 Como o Bitcoin se livra da exigência de \textit{confiança}? Vamos nos aprofundar neste assunto nos próximos capítulos do livro, mas a ideia básica é que em vez de confiar em alguém que diz "Eu sou Ana" ou "Eu tenho R\$10,00 em minha conta bancária", que significaria acreditar em sua palavra, podemos usar a criptografia matemática para declarar os mesmos fatos de uma forma que seja facilmente verificada pelo destinatário e impossível de ser forjada.
 Bitcoin usa criptografia matemática ao longo de todo seu projeto para permitir que participantes possam verificar o comportamento dos mesmos sem confiar em terceiros.
 Isso se tornaria a base do sistema do Bitcoin para provar a propriedade dos saldos, bem como fornecer segurança para a rede.
+
 \paragraph{}
 \textit{Temos que confiar [nos bancos] nossa privacidade, confiar que não irão permitir que ladrões de identidade drenem nossas contas.}
 \paragraph{}
+
 Ao contrário de usar sua conta bancária, sistema de pagamento digital ou cartão de crédito, o Bitcoin permite que duas partes façam transações sem fornecer nenhuma informação de identificação pessoal.
 
 Os repositórios centralizados de dados de consumidores armazenados em bancos, empresas de cartão de crédito, processadores de pagamentos e governos são chamarizes gigantescos para os hackers. Quase que para provar o ponto de Satoshi, a Equifax, foi imensamente comprometida em 2017, quando hackers conseguiram vazar as identidades e dados financeiros de mais de 140 milhões de pessoas.
@@ -107,6 +113,7 @@ O Bitcoin separa as transações financeiras das identidades do mundo real. Afin
 \paragraph{}
 \textit{O banco central deve ser confiável para não depreciar a moeda, mas a história das moedas fiduciárias está cheia de violações dessa confiança.}
 \paragraph{}
+
 \textit{Fiat}, que em latim, significa “que seja feito”, refere-se à moeda emitida pelo governo e pelo banco central que é decretada como curso legal pelo governo. Historicamente, o dinheiro era escolhido livremente pelos participantes do mercado entre coisas difíceis de serem produzidas, fáceis de serem verificadas e transportadas, como sal, conchas, pedras, prata e ouro.
 Toda vez que 'algo' era utilizado como dinheiro havia a tentação de criar mais dele. Se alguém viesse com tecnologia superior para rapidamente criar muitos de 'algo', esse 'algo' perdia valor. Era assim que Colonizadores europeus foram capazes de despir o continente africano de suas riquezas, trocando petecas de vidros, facilmente produzidos, por escravos humanos, dificilmente produzidos. Por isso que ouro foi considerado dinheiro por tanto tempo, era difícil de produzir mais dele rapidamente.
 
@@ -126,9 +133,11 @@ Bitcoin é imune a tais descobertas e manipulações de demanda. É simplesmente
 Veremos como isso é aplicado nos próximos capítulos.
 
 A natureza da dinheiro e o funcionamento do sistema monetário atual são intrínsecos, e neste livro não serão detalhados em profundidade adequada. Caso queiras aprender mais sobre tais fundamentos do dinheiro e como eles se aplicam ao Bitcoin recomendo a leitura do livro \textit{O Padrão Bitcoin} por Saifedean Ammous, como ponto de partida
+
 \paragraph{}
 \textit{Os dados podiam ser protegidos de uma forma fisicamente impossível para outras pessoas acessarem, não importando o motivo, quão boa a desculpa, não importando nada[\ldots] É hora de termos o mesmo no nosso dinheiro.}
 \paragraph{}
+
 Nossos sistemas atuais de proteção de dinheiro, como quando fazemos um depósito em um banco, dependem de confiar em outra pessoa para fazer o trabalho. Confiar em tal intermediário não requer apenas confiança de que eles não farão algo malicioso ou tolo, e que os hackers não irão roubá-lo, mas também que o governo não confiscará ou congelará os fundos. No entanto, foi demonstrado em todo o mundo, repetidamente, que os governos podem e suprimem o acesso ao dinheiro quando se sentem ameaçados.
 
 Pode parecer bobagem para alguém que mora nos Estados Unidos, ou em outra economia altamente regulamentada, pensar em acordar e ter seu dinheiro confiscado. Ocorreu algo parecido comigo, quando tive meus fundos congelados pelo PayPal simplesmente porque não usava minha conta há meses. Levei mais de uma semana para recuperar o acesso ao “meu” dinheiro. Tenho sorte de morar nos Estados Unidos, um dos poucos países onde pelo menos poderia esperar obter algum alívio legal se o PayPal congelasse meus fundos, e onde tenho a confiança básica de que meu governo e meu banco não roubarão meu dinheiro.
@@ -143,9 +152,11 @@ Isso da carta branca ao governo para implementar experimentos econômicos insano
 O Bitcoin fornece um sistema de segurança que não depende da confiança de terceiros para proteger o seu dinheiro. Em vez disso, o Bitcoin torna suas moedas \textit{impossíveis de serem acessadas por outros} sem uma chave especial que só você possui, \textit{não importa por que razão, não importa quão boa seja a desculpa, não importa o quê façam}. Possuindo Bitcoin, você possui a chave para sua liberdade financeira. Bitcoin separa dinheiro do estado.
 
 %O Bitcoin separa o dinheiro do estado e, portanto, fornece um controle sobre autocratas e ditadores, restaurando a liberdade do controle da riqueza e a de transportá-la através das fronteiras sem nenhuma interferência.
+
 \paragraph{}
 \textit{A solução do Bitcoin é usar uma rede ponto a ponto para verificar se há gastos duplos[\ldots] como um servidor de carimbo de data/hora distribuído, carimbando a primeira transação para gastar uma moeda.}
 \paragraph{}
+
 Uma rede simplesmente se refere à ideia de que vários computadores estão conectados e podem enviar mensagens uns aos outros. A palavra distribuído significa que não há uma entidade central controladora, mas que todos os participantes se coordenam para tornar a rede bem-sucedida.
 
 Em um sistema sem controle central, é importante saber que ninguém está trapaceando. A ideia de \textit{gasto duplo} refere-se à capacidade de gastar o mesmo dinheiro duas vezes. Isso não é um problema com dinheiro físico pois ele sai da sua mão quando o utiliza. Entretanto, transições digitais podem ser copiadas, de maneira similar a musicas ou filmes. Quando movimentas dinheiro através de um banco, o banco garante que o dinheiro não sera movido duas vezes. Em um sistema sem entidade central é necessário encontrar uma maneira de impedir o gasto duplo que na pratica é a mesma coisa que forjar dinheiro.
@@ -163,7 +174,7 @@ A invenção do Bitcoin resolveu uma série de problemas técnicos interessantes
 \item Como criar um ativo digital que não seja forjável e seja verificável instantaneamente e resistente a roubo e hacking.
 \end{enumerate}
 
-Quando Bitcoin foi lançado apenas um punhado de pessoas utilizavam e rodavam um \textit{node} do software Bitcoin nos seus computadores para alimentar a rede Bitcoin. A grande maioria das pessoas da epoca pensavam que era uma piada, ou que o sistema iria apresentar serias falhas de projeto que o fariam não funcional. 
+Quando Bitcoin foi lançado apenas um punhado de pessoas utilizavam e rodavam um \textit{node} do software Bitcoin nos seus computadores para alimentar a rede Bitcoin. A grande maioria das pessoas da época pensavam que era uma piada, ou que o sistema iria apresentar serias falhas de projeto que o fariam não funcional. 
 
 Com a passagem do tempo mais pessoas se juntaram a rede, utilizando seus computadores a rede se tornou mais segura e reforçando que rede tinha valor ao trocar outras moedas por ela, ou bens e serviços. Hoje dez anos depois a rede é utilizada por milhões de pessoas com dezenas a centenas de milhares de \textit{nodes} rodando o software gratuito do Bitcoin, que foi desenvolvido por centenas de voluntários e empresas ao redor do mundo.
 
